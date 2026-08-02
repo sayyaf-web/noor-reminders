@@ -1,0 +1,11 @@
+{
+  "name": "Noor Reminders",
+  "short_name": "Noor",
+  "description": "Islamic reminders, Quran, Duas, prayer times and Qibla.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f1713",
+  "theme_color": "#0f1713",
+  "orientation": "portrait",
+  "icons": []
+}

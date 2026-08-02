@@ -1,0 +1,3138 @@
+<!DOCTYPE html>
+< lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d5132">
+
+<title>Noor Reminders</title>
+
+<style>
+:root{
+--green:#0d5132;
+--green2:#176b45;
+--gold:#d4af37;
+--cream:#f6f3e9;
+--white:#fff;
+--text:#17231d;
+--muted:#68756e;
+--card:#fff;
+--border:#e2e7e3;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:Georgia,"Times New Roman",serif;
+background:var(--cream);
+color:var(--text);
+line-height:1.6;
+transition:.3s;
+padding-bottom:70px;
+}
+
+body.dark{
+--cream:#0b1510;
+--white:#14221a;
+--text:#f2f6f3;
+--muted:#b7c1bb;
+--card:#14221a;
+--border:#2c3c33;
+}
+
+button,input,select{
+font:inherit;
+}
+
+.navbar{
+position:sticky;
+top:0;
+z-index:1000;
+height:65px;
+background:rgba(13,81,50,.98);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 5%;
+color:white;
+box-shadow:0 3px 15px rgba(0,0,0,.12);
+}
+
+.logo{
+color:white;
+text-decoration:none;
+font-size:21px;
+font-weight:bold;
+display:flex;
+align-items:center;
+gap:9px;
+}
+
+.logo span:first-child{
+font-size:27px;
+}
+
+.nav-links{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.nav-links a{
+color:white;
+text-decoration:none;
+font-size:14px;
+}
+
+.theme-btn,
+.menu-btn{
+background:none;
+border:0;
+color:white;
+cursor:pointer;
+}
+
+.theme-btn{
+font-size:18px;
+}
+
+.menu-btn{
+display:none;
+font-size:26px;
+}
+
+.hero{
+min-height:520px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+padding:70px 20px;
+background:
+linear-gradient(rgba(4,48,28,.88),rgba(4,48,28,.91)),
+radial-gradient(circle,#247a50,#052c1a);
+}
+
+.hero-content{
+max-width:850px;
+}
+
+.bismillah{
+font-size:27px;
+direction:rtl;
+color:#eadb91;
+margin-bottom:20px;
+}
+
+.hero h1{
+font-size:clamp(45px,10vw,80px);
+line-height:1;
+margin-bottom:18px;
+}
+
+.hero h1 span{
+color:#dfc85f;
+}
+
+.hero p{
+font-size:19px;
+color:#e4ebe7;
+max-width:650px;
+margin:auto;
+}
+
+.hero-buttons{
+margin-top:30px;
+display:flex;
+justify-content:center;
+gap:12px;
+flex-wrap:wrap;
+}
+
+.btn{
+border:0;
+border-radius:30px;
+padding:13px 23px;
+cursor:pointer;
+text-decoration:none;
+display:inline-block;
+}
+
+.gold{
+background:var(--gold);
+color:#152016;
+}
+
+.outline{
+border:1px solid rgba(255,255,255,.5);
+color:white;
+}
+
+.container{
+width:min(1100px,90%);
+margin:auto;
+}
+
+.section{
+padding:65px 0;
+}
+
+.title{
+text-align:center;
+margin-bottom:35px;
+}
+
+.title small{
+color:var(--green2);
+font-weight:bold;
+text-transform:uppercase;
+letter-spacing:2px;
+}
+
+body.dark .title small{
+color:#8bd2a7;
+}
+
+.title h2{
+font-size:34px;
+margin:5px 0;
+}
+
+.title p{
+color:var(--muted);
+}
+
+.card{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:20px;
+padding:25px;
+box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.daily{
+background:var(--green);
+color:white;
+border-radius:24px;
+padding:40px 25px;
+text-align:center;
+}
+
+.daily h2{
+font-size:29px;
+margin-bottom:15px;
+}
+
+.daily p{
+font-size:21px;
+max-width:750px;
+margin:auto;
+}
+
+.source{
+margin-top:16px;
+color:#e8d989;
+}
+
+/* PRAYER TIMES */
+
+.location-box{
+max-width:600px;
+margin:0 auto 30px;
+text-align:center;
+}
+
+.location-form{
+display:flex;
+gap:10px;
+margin-top:18px;
+}
+
+.location-form input,
+.location-form select{
+flex:1;
+padding:14px;
+border:1px solid var(--border);
+border-radius:12px;
+background:var(--card);
+color:var(--text);
+outline:none;
+}
+
+.primary-btn{
+border:0;
+background:var(--green);
+color:white;
+padding:13px 20px;
+border-radius:12px;
+cursor:pointer;
+}
+
+.prayer-status{
+background:var(--green);
+color:white;
+padding:18px;
+border-radius:17px;
+text-align:center;
+margin-bottom:20px;
+}
+
+.prayer-grid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:12px;
+}
+
+.prayer{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:17px;
+padding:22px 10px;
+text-align:center;
+}
+
+.prayer-icon{
+font-size:25px;
+margin-bottom:5px;
+}
+
+.prayer-name{
+font-weight:bold;
+}
+
+.prayer-time{
+font-size:21px;
+color:var(--green);
+margin-top:5px;
+font-weight:bold;
+}
+
+body.dark .prayer-time{
+color:#91d8ab;
+}
+
+.prayer.next{
+border:2px solid var(--gold);
+transform:translateY(-3px);
+}
+
+/* QIBLA */
+
+.qibla{
+text-align:center;
+max-width:500px;
+margin:auto;
+}
+
+.compass{
+width:190px;
+height:190px;
+border-radius:50%;
+border:7px solid var(--green);
+margin:25px auto;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+background:var(--card);
+}
+
+.compass-inner{
+font-size:70px;
+transition:transform 1s;
+}
+
+.qibla-degree{
+font-size:28px;
+font-weight:bold;
+color:var(--green);
+}
+
+/* DHIKR */
+
+.counter{
+max-width:500px;
+margin:auto;
+text-align:center;
+}
+
+.counter-number{
+font-size:80px;
+font-weight:bold;
+color:var(--green);
+margin:10px 0;
+}
+
+body.dark .counter-number{
+color:#91d8ab;
+}
+
+.counter button{
+border:0;
+background:var(--green);
+color:white;
+padding:13px 23px;
+border-radius:30px;
+cursor:pointer;
+margin:5px;
+}
+
+.counter .reset{
+background:#777;
+}
+
+/* FAVORITES */
+
+.favorite-count{
+text-align:center;
+font-size:45px;
+font-weight:bold;
+color:var(--green);
+}
+
+.favorite-list{
+margin-top:20px;
+}
+
+.favorite-item{
+background:var(--card);
+border:1px solid var(--border);
+padding:15px;
+border-radius:12px;
+margin-bottom:10px;
+}
+
+/* FOOTER */
+
+footer{
+background:#082d1c;
+color:white;
+text-align:center;
+padding:45px 20px 25px;
+}
+
+footer h3{
+font-size:25px;
+}
+
+footer p{
+color:#b9c9c0;
+margin-top:5px;
+}
+
+.footer-line{
+height:1px;
+background:rgba(255,255,255,.15);
+max-width:600px;
+margin:25px auto;
+}
+
+.top{
+position:fixed;
+right:18px;
+bottom:85px;
+display:none;
+width:43px;
+height:43px;
+border:0;
+border-radius:50%;
+background:var(--gold);
+cursor:pointer;
+z-index:900;
+}
+
+.bottom-nav{
+display:none;
+}
+
+/* MOBILE */
+
+@media(max-width:750px){
+
+.nav-links{
+display:none;
+position:absolute;
+top:65px;
+left:0;
+right:0;
+background:var(--green);
+flex-direction:column;
+padding:20px;
+}
+
+.nav-links.active{
+display:flex;
+}
+
+.menu-btn{
+display:block;
+}
+
+.prayer-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.prayer:last-child{
+grid-column:span 2;
+}
+
+.location-form{
+flex-direction:column;
+}
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+height:65px;
+background:var(--green);
+z-index:1000;
+display:flex;
+justify-content:space-around;
+align-items:center;
+}
+
+.bottom-nav a{
+color:white;
+text-decoration:none;
+font-size:11px;
+text-align:center;
+}
+
+.bottom-nav span{
+display:block;
+font-size:20px;
+}
+
+}
+</style>
+</head>
+
+<><!-- NOOR WELCOME BANNER -->
+
+<section class="noor-welcome">
+
+  <div class="noor-welcome-content">
+
+    <div class="noor-moon">🌙</div>
+
+    <h1>Welcome to Noor Reminders</h1>
+
+    <p>
+      Bringing light to your daily life through
+      Quran, Duas, prayer and remembrance of Allah.
+    </p>
+
+    <div class="noor-welcome-buttons">
+
+      <a href="#dailyNoor" class="noor-welcome-btn">
+        ✨ Daily Reminder
+      </a>
+
+      <a href="#duas" class="noor-welcome-btn">
+        🤲 Explore Duas
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+.noor-welcome{
+  padding:55px 20px;
+  text-align:center;
+  background:linear-gradient(
+    135deg,
+    #10251d,
+    #183b2c,
+    #0d1713
+  );
+  border-radius:0 0 30px 30px;
+}
+
+.noor-welcome-content{
+  max-width:700px;
+  margin:auto;
+}
+
+.noor-moon{
+  font-size:55px;
+  margin-bottom:10px;
+}
+
+.noor-welcome h1{
+  font-size:32px;
+  margin:10px 0;
+}
+
+.noor-welcome p{
+  max-width:600px;
+  margin:15px auto 25px;
+  line-height:1.7;
+  opacity:.85;
+}
+
+.noor-welcome-buttons{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.noor-welcome-btn{
+  display:inline-block;
+  padding:13px 18px;
+  border-radius:12px;
+  text-decoration:none;
+  background:#d6b86a;
+  color:#111;
+  font-weight:bold;
+}
+
+</style>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<a href="#home" class="logo">
+<span>☪</span>
+<span>Noor Reminders</span>
+</a>
+
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<div class="nav-links" id="navLinks">
+
+<a href="#home">Home</a>
+<a href="#prayer">Prayer</a>
+<a href="#qibla">Qibla</a>
+<a href="#dhikr">Dhikr</a>
+<a href="#favorites">Favorites</a>
+
+<button class="theme-btn" onclick="toggleTheme()" id="themeBtn">
+🌙
+</button>
+
+</div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero" id="home">
+
+<div class="hero-content">
+
+<div class="bismillah">
+بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
+</div>
+
+<h1>
+Noor <span>Reminders</span>
+</h1>
+
+<p>
+A reminder for the heart, a light for the soul,
+and a step closer to Allah.
+</p>
+
+<div class="hero-buttons">
+
+<a href="#prayer" class="btn gold">
+🕌 Prayer Times
+</a>
+
+<a href="#dhikr" class="btn outline">
+📿 Start Dhikr
+</a>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- DAILY REMINDER -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="daily">
+
+<h2>🌿 Today's Reminder</h2>
+
+<p id="dailyText">
+Indeed, in the remembrance of Allah do hearts find rest.
+</p>
+
+<div class="source">
+Qur'an 13:28
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- NOOR HOME DASHBOARD -->
+
+<section class="section" id="noorDashboard">
+
+<div class="container">
+
+<div class="noor-welcome">
+
+<small>بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</small>
+
+<h2>Assalamu Alaikum 🌙</h2>
+
+<p>Welcome to Noor Reminders</p>
+
+</div>
+
+
+<div class="dashboard-grid">
+
+
+<div class="dashboard-card">
+
+<div class="dashboard-icon">🕌</div>
+
+<small>Next Prayer</small>
+
+<h3 id="nextPrayerName">Fajr</h3>
+
+<strong id="prayerCountdown">--:--:--</strong>
+
+<p id="nextPrayerTime">Prayer time loading...</p>
+
+</div>
+
+
+<div class="dashboard-card">
+
+<div class="dashboard-icon">📅</div>
+
+<small>Today's Hijri Date</small>
+
+<h3 id="hijriDate">Loading...</h3>
+
+<p>May Allah bless your day.</p>
+
+</div>
+
+
+<div class="dashboard-card reminder-card">
+
+<div class="dashboard-icon">🤲</div>
+
+<small>Daily Reminder</small>
+
+<h3 id="dailyReminder">
+Remember Allah often.
+</h3>
+
+<p>“Indeed, in the remembrance of Allah do hearts find rest.”</p>
+
+</div>
+
+
+<div class="dashboard-card">
+
+<div class="dashboard-icon">📿</div>
+
+<small>Dhikr</small>
+
+<h3 id="dashDhikrCount">0</h3>
+
+<p>Dhikr completed today</p>
+
+<button class="primary-btn" onclick="dashboardDhikr()">
++ Dhikr
+</button>
+
+</div>
+
+</div>
+
+
+<div class="quick-actions">
+
+<h3>Quick Access</h3>
+
+<div class="quick-grid">
+
+<button onclick="document.getElementById('quranExplorer').scrollIntoView({behavior:'smooth'})">
+📖
+<span>Quran</span>
+</button>
+
+<button onclick="document.getElementById('qibla').scrollIntoView({behavior:'smooth'})">
+🧭
+<span>Qibla</span>
+</button>
+
+<button onclick="document.getElementById('prayer').scrollIntoView({behavior:'smooth'})">
+🕌
+<span>Prayer Times</span>
+</button>
+
+<button onclick="dashboardDhikr()">
+📿
+<span>Dhikr</span>
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<style>
+
+.noor-welcome{
+text-align:center;
+padding:30px 15px;
+margin-bottom:20px;
+}
+
+.noor-welcome small{
+letter-spacing:1px;
+opacity:.8;
+}
+
+.noor-welcome h2{
+font-size:30px;
+margin:12px 0 6px;
+}
+
+.noor-welcome p{
+opacity:.75;
+margin:0;
+}
+
+.dashboard-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+
+.dashboard-card{
+padding:20px;
+border-radius:18px;
+background:var(--card);
+border:1px solid var(--border);
+}
+
+.dashboard-icon{
+font-size:28px;
+margin-bottom:12px;
+}
+
+.dashboard-card small{
+opacity:.7;
+}
+
+.dashboard-card h3{
+margin:8px 0;
+}
+
+.dashboard-card strong{
+font-size:24px;
+display:block;
+margin:10px 0;
+}
+
+.dashboard-card p{
+font-size:13px;
+line-height:1.5;
+opacity:.75;
+}
+
+.reminder-card{
+grid-column:1/-1;
+}
+
+.quick-actions{
+margin-top:25px;
+}
+
+.quick-actions h3{
+margin-bottom:15px;
+}
+
+.quick-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+}
+
+.quick-grid button{
+border:1px solid var(--border);
+background:var(--card);
+color:inherit;
+border-radius:15px;
+padding:15px 8px;
+font-size:22px;
+cursor:pointer;
+}
+
+.quick-grid button span{
+display:block;
+font-size:12px;
+margin-top:7px;
+}
+
+@media(max-width:600px){
+
+.dashboard-grid{
+grid-template-columns:1fr;
+}
+
+.reminder-card{
+grid-column:auto;
+}
+
+.quick-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+</style>
+
+
+<script>
+
+let dashboardDhikrCount =
+Number(localStorage.getItem("noorDhikrCount") || 0);
+
+document.getElementById("dashDhikrCount").textContent =
+dashboardDhikrCount;
+
+
+function dashboardDhikr(){
+
+dashboardDhikrCount++;
+
+localStorage.setItem(
+"noorDhikrCount",
+dashboardDhikrCount
+);
+
+document.getElementById("dashDhikrCount").textContent =
+dashboardDhikrCount;
+
+}
+
+
+/* HIJRI DATE */
+
+async function loadHijriDate(){
+
+try{
+
+const today = new Date();
+
+const day = today.getDate();
+const month = today.getMonth()+1;
+const year = today.getFullYear();
+
+const response = await fetch(
+"https://api.aladhan.com/v1/gToH?date="
++String(day).padStart(2,"0")
++"-"
++String(month).padStart(2,"0")
++"-"
++year
+);
+
+const data = await response.json();
+
+const hijri = data.data.hijri;
+
+document.getElementById("hijriDate").textContent =
+hijri.day+" "+hijri.month.en+" "+hijri.year+" AH";
+
+}catch(error){
+
+document.getElementById("hijriDate").textContent =
+"Today";
+
+}
+
+}
+
+loadHijriDate();
+
+
+/* DAILY REMINDER */
+
+const dashboardReminders = [
+
+"Remember Allah often.",
+
+"Begin your day with Bismillah.",
+
+"Make your prayers a priority.",
+
+"Be grateful for what Allah has given you.",
+
+"Send blessings upon the Prophet ﷺ.",
+
+"Trust Allah and keep making dua.",
+
+"Speak good or remain silent."
+
+];
+
+const reminderIndex =
+new Date().getDate() %
+dashboardReminders.length;
+
+document.getElementById("dailyReminder").textContent =
+dashboardReminders[reminderIndex];
+
+</script><!-- PRAYER TIMES -->
+
+<section class="section" id="prayer">
+
+<div class="container">
+
+<div class="title">
+
+<small>Worship on Time</small>
+
+<h2>🕌 Prayer Times</h2>
+
+<p>
+Enter your city to get today's prayer times.
+</p>
+
+</div>
+
+
+<div class="card location-box">
+
+<h3>📍 Your Location</h3>
+
+<p id="locationText">
+Choose your city below.
+</p>
+
+<div class="location-form">
+
+<input
+type="text"
+id="city"
+placeholder="City e.g. Nairobi"
+>
+
+<input
+type="text"
+id="country"
+placeholder="Country e.g. Kenya"
+>
+
+</div>
+
+<br>
+
+<button class="primary-btn" onclick="loadPrayerTimes()">
+Get Prayer Times
+</button>
+
+</div>
+
+
+<div class="prayer-status" id="prayerStatus">
+
+Enter your location to load prayer times.
+
+</div>
+
+
+<div class="prayer-grid">
+
+<div class="prayer" id="fajr">
+<div class="prayer-icon">🌅</div>
+<div class="prayer-name">Fajr</div>
+<div class="prayer-time">--:--</div>
+</div>
+
+<div class="prayer" id="dhuhr">
+<div class="prayer-icon">☀️</div>
+<div class="prayer-name">Dhuhr</div>
+<div class="prayer-time">--:--</div>
+</div>
+
+<div class="prayer" id="asr">
+<div class="prayer-icon">🌤️</div>
+<div class="prayer-name">Asr</div>
+<div class="prayer-time">--:--</div>
+</div>
+
+<div class="prayer" id="maghrib">
+<div class="prayer-icon">🌇</div>
+<div class="prayer-name">Maghrib</div>
+<div class="prayer-time">--:--</div>
+</div>
+
+<div class="prayer" id="isha">
+<div class="prayer-icon">🌙</div>
+<div class="prayer-name">Isha</div>
+<div class="prayer-time">--:--</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- QURAN READER -->
+
+<section class="section" id="quran">
+
+<div class="container">
+
+<div class="title">
+
+<small>Words of Allah</small>
+
+<h2>📖 Quran Reader</h2>
+
+<p>Read, reflect and remember.</p>
+
+</div>
+
+<div class="card quran-reader">
+
+<h3>Surah Al-Fatihah</h3>
+
+<p class="surah-info">The Opening • 7 Ayahs</p>
+
+<div class="ayah-reader">
+
+<div class="ayah-number">1</div>
+
+<div class="quran-arabic">
+بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
+</div>
+
+<p class="quran-translation">
+In the name of Allah, the Most Compassionate, the Most Merciful.
+</p>
+
+</div>
+
+<div class="ayah-reader">
+
+<div class="ayah-number">2</div>
+
+<div class="quran-arabic">
+الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
+</div>
+
+<p class="quran-translation">
+All praise is for Allah—Lord of all worlds.
+</p>
+
+</div>
+
+<div class="ayah-reader">
+
+<div class="ayah-number">3</div>
+
+<div class="quran-arabic">
+الرَّحْمَنِ الرَّحِيمِ
+</div>
+
+<p class="quran-translation">
+The Most Compassionate, Most Merciful.
+</p>
+
+</div>
+
+<div class="ayah-reader">
+
+<div class="ayah-number">4</div>
+
+<div class="quran-arabic">
+مَالِكِ يَوْمِ الدِّينِ
+</div>
+
+<p class="quran-translation">
+Master of the Day of Judgment.
+</p>
+
+</div>
+
+<div class="ayah-reader">
+
+<div class="ayah-number">5</div>
+
+<div class="quran-arabic">
+إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ
+</div>
+
+<p class="quran-translation">
+You alone we worship and You alone we ask for help.
+</p>
+
+</div>
+
+<div class="ayah-reader">
+
+<div class="ayah-number">6</div>
+
+<div class="quran-arabic">
+اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ
+</div>
+
+<p class="quran-translation">
+Guide us along the Straight Path.
+</p>
+
+</div>
+
+<div class="ayah-reader">
+
+<div class="ayah-number">7</div>
+
+<div class="quran-arabic">
+صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ
+غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ
+</div>
+
+<p class="quran-translation">
+The path of those You have blessed—not those You are displeased with, or those who are astray.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<!-- QURAN SURAH EXPLORER -->
+
+<section class="section" id="quranExplorer">
+
+<div class="container">
+
+<div class="title">
+
+<small>Explore The Quran</small>
+
+<h2>📖 Quran Explorer</h2>
+
+<p>Choose a Surah and read its verses.</p>
+
+</div>
+
+<div class="card">
+
+<select id="surahSelect" class="surah-select">
+<option value="1">1 — Al-Fatihah</option>
+<option value="2">2 — Al-Baqarah</option>
+<option value="3">3 — Aal-E-Imran</option>
+<option value="4">4 — An-Nisa</option>
+<option value="5">5 — Al-Ma'idah</option>
+<option value="6">6 — Al-An'am</option>
+<option value="7">7 — Al-A'raf</option>
+<option value="8">8 — Al-Anfal</option>
+<option value="9">9 — At-Tawbah</option>
+<option value="10">10 — Yunus</option>
+<option value="11">11 — Hud</option>
+<option value="12">12 — Yusuf</option>
+<option value="13">13 — Ar-Ra'd</option>
+<option value="14">14 — Ibrahim</option>
+<option value="15">15 — Al-Hijr</option>
+<option value="16">16 — An-Nahl</option>
+<option value="17">17 — Al-Isra</option>
+<option value="18">18 — Al-Kahf</option>
+<option value="19">19 — Maryam</option>
+<option value="20">20 — Ta-Ha</option>
+<option value="21">21 — Al-Anbiya</option>
+<option value="22">22 — Al-Hajj</option>
+<option value="23">23 — Al-Mu'minun</option>
+<option value="24">24 — An-Nur</option>
+<option value="25">25 — Al-Furqan</option>
+<option value="26">26 — Ash-Shu'ara</option>
+<option value="27">27 — An-Naml</option>
+<option value="28">28 — Al-Qasas</option>
+<option value="29">29 — Al-Ankabut</option>
+<option value="30">30 — Ar-Rum</option>
+<option value="31">31 — Luqman</option>
+<option value="32">32 — As-Sajdah</option>
+<option value="33">33 — Al-Ahzab</option>
+<option value="34">34 — Saba</option>
+<option value="35">35 — Fatir</option>
+<option value="36">36 — Ya-Sin</option>
+<option value="37">37 — As-Saffat</option>
+<option value="38">38 — Sad</option>
+<option value="39">39 — Az-Zumar</option>
+<option value="40">40 — Ghafir</option>
+<option value="41">41 — Fussilat</option>
+<option value="42">42 — Ash-Shura</option>
+<option value="43">43 — Az-Zukhruf</option>
+<option value="44">44 — Ad-Dukhan</option>
+<option value="45">45 — Al-Jathiyah</option>
+<option value="46">46 — Al-Ahqaf</option>
+<option value="47">47 — Muhammad</option>
+<option value="48">48 — Al-Fath</option>
+<option value="49">49 — Al-Hujurat</option>
+<option value="50">50 — Qaf</option>
+<option value="51">51 — Adh-Dhariyat</option>
+<option value="52">52 — At-Tur</option>
+<option value="53">53 — An-Najm</option>
+<option value="54">54 — Al-Qamar</option>
+<option value="55">55 — Ar-Rahman</option>
+<option value="56">56 — Al-Waqi'ah</option>
+<option value="57">57 — Al-Hadid</option>
+<option value="58">58 — Al-Mujadilah</option>
+<option value="59">59 — Al-Hashr</option>
+<option value="60">60 — Al-Mumtahanah</option>
+<option value="61">61 — As-Saff</option>
+<option value="62">62 — Al-Jumu'ah</option>
+<option value="63">63 — Al-Munafiqun</option>
+<option value="64">64 — At-Taghabun</option>
+<option value="65">65 — At-Talaq</option>
+<option value="66">66 — At-Tahrim</option>
+<option value="67">67 — Al-Mulk</option>
+<option value="68">68 — Al-Qalam</option>
+<option value="69">69 — Al-Haqqah</option>
+<option value="70">70 — Al-Ma'arij</option>
+<option value="71">71 — Nuh</option>
+<option value="72">72 — Al-Jinn</option>
+<option value="73">73 — Al-Muzzammil</option>
+<option value="74">74 — Al-Muddaththir</option>
+<option value="75">75 — Al-Qiyamah</option>
+<option value="76">76 — Al-Insan</option>
+<option value="77">77 — Al-Mursalat</option>
+<option value="78">78 — An-Naba</option>
+<option value="79">79 — An-Nazi'at</option>
+<option value="80">80 — Abasa</option>
+<option value="81">81 — At-Takwir</option>
+<option value="82">82 — Al-Infitar</option>
+<option value="83">83 — Al-Mutaffifin</option>
+<option value="84">84 — Al-Inshiqaq</option>
+<option value="85">85 — Al-Buruj</option>
+<option value="86">86 — At-Tariq</option>
+<option value="87">87 — Al-A'la</option>
+<option value="88">88 — Al-Ghashiyah</option>
+<option value="89">89 — Al-Fajr</option>
+<option value="90">90 — Al-Balad</option>
+<option value="91">91 — Ash-Shams</option>
+<option value="92">92 — Al-Layl</option>
+<option value="93">93 — Ad-Duha</option>
+<option value="94">94 — Ash-Sharh</option>
+<option value="95">95 — At-Tin</option>
+<option value="96">96 — Al-Alaq</option>
+<option value="97">97 — Al-Qadr</option>
+<option value="98">98 — Al-Bayyinah</option>
+<option value="99">99 — Az-Zalzalah</option>
+<option value="100">100 — Al-Adiyat</option>
+<option value="101">101 — Al-Qari'ah</option>
+<option value="102">102 — At-Takathur</option>
+<option value="103">103 — Al-Asr</option>
+<option value="104">104 — Al-Humazah</option>
+<option value="105">105 — Al-Fil</option>
+<option value="106">106 — Quraysh</option>
+<option value="107">107 — Al-Ma'un</option>
+<option value="108">108 — Al-Kawthar</option>
+<option value="109">109 — Al-Kafirun</option>
+<option value="110">110 — An-Nasr</option>
+<option value="111">111 — Al-Masad</option>
+<option value="112">112 — Al-Ikhlas</option>
+<option value="113">113 — Al-Falaq</option>
+<option value="114">114 — An-Nas</option>
+</select>
+
+<div id="quranLoading" class="quran-loading">
+Loading Quran...
+</div>
+
+<div id="quranContent"></div>
+
+<div class="quran-controls">
+
+<button class="primary-btn" onclick="previousAyah()">
+⏮ Previous
+</button>
+
+<button class="primary-btn" onclick="playCurrentAyah()">
+▶️ Play
+</button>
+
+<button class="primary-btn" onclick="nextAyah()">
+Next ⏭
+</button>
+
+</div>
+
+<audio id="quranAudio" controls></audio>
+
+</div>
+
+</div>
+
+</section>
+
+
+<style>
+
+.surah-select{
+width:100%;
+padding:15px;
+border-radius:12px;
+border:1px solid var(--border);
+background:var(--card);
+color:var(--text);
+margin-bottom:25px;
+outline:none;
+}
+
+.quran-loading{
+text-align:center;
+padding:30px;
+color:var(--muted);
+}
+
+.explorer-ayah{
+border-top:1px solid var(--border);
+padding:25px 5px;
+}
+
+.explorer-ayah:first-child{
+border-top:0;
+}
+
+.explorer-number{
+display:inline-flex;
+width:32px;
+height:32px;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:var(--green);
+color:white;
+font-size:13px;
+margin-bottom:10px;
+}
+
+.explorer-arabic{
+font-size:29px;
+line-height:2.1;
+direction:rtl;
+text-align:right;
+margin:10px 0 18px;
+}
+
+.explorer-translation{
+color:var(--muted);
+font-size:16px;
+line-height:1.7;
+}
+
+.quran-controls{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+margin-top:25px;
+}
+
+#quranAudio{
+width:100%;
+margin-top:20px;
+}
+
+</style>
+
+
+<script>
+
+let explorerAyahs = [];
+let currentAyah = 0;
+
+
+/* LOAD SURAH */
+
+async function loadSurah(){
+
+const surahNumber =
+document.getElementById("surahSelect").value;
+
+const loading =
+document.getElementById("quranLoading");
+
+const content =
+document.getElementById("quranContent");
+
+loading.style.display="block";
+
+content.innerHTML="";
+
+try{
+
+const response = await fetch(
+"https://api.alquran.cloud/v1/surah/"
++surahNumber+
+"/editions/quran-uthmani,en.asad"
+);
+
+const result = await response.json();
+
+if(result.code !== 200){
+
+throw new Error("Could not load Quran");
+
+}
+
+const arabic = result.data[0];
+
+const english = result.data[1];
+
+explorerAyahs = arabic.ayahs.map(
+function(ayah,index){
+
+return {
+
+number:ayah.numberInSurah,
+
+globalNumber:ayah.number,
+
+arabic:ayah.text,
+
+english:english.ayahs[index].text
+
+};
+
+});
+
+currentAyah=0;
+
+renderSurah();
+
+loading.style.display="none";
+
+}catch(error){
+
+loading.textContent=
+"Unable to load Quran. Please check your internet connection.";
+
+}
+
+}
+
+
+/* DISPLAY SURAH */
+
+function renderSurah(){
+
+const content =
+document.getElementById("quranContent");
+
+content.innerHTML="";
+
+explorerAyahs.forEach(
+function(ayah,index){
+
+const div =
+document.createElement("div");
+
+div.className="explorer-ayah";
+
+div.id="explorerAyah"+index;
+
+div.innerHTML=`
+
+<div class="explorer-number">
+${ayah.number}
+</div>
+
+<div class="explorer-arabic">
+${ayah.arabic}
+</div>
+
+<div class="explorer-translation">
+${ayah.english}
+</div>
+
+`;
+
+content.appendChild(div);
+
+});
+
+highlightCurrent();
+
+}
+
+
+/* CURRENT AYAH */
+
+function highlightCurrent(){
+
+document
+.querySelectorAll(".explorer-ayah")
+.forEach(function(item){
+
+item.style.background="";
+
+});
+
+const current =
+document.getElementById(
+"explorerAyah"+currentAyah
+);
+
+if(current){
+
+current.style.background=
+"rgba(212,175,55,.12)";
+
+current.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
+
+}
+
+}
+
+
+/* NEXT */
+
+function nextAyah(){
+
+if(currentAyah <
+explorerAyahs.length-1){
+
+currentAyah++;
+
+highlightCurrent();
+
+playCurrentAyah();
+
+}
+
+}
+
+
+/* PREVIOUS */
+
+function previousAyah(){
+
+if(currentAyah>0){
+
+currentAyah--;
+
+highlightCurrent();
+
+playCurrentAyah();
+
+}
+
+}
+
+
+/* AUDIO */
+
+function playCurrentAyah(){
+
+if(!explorerAyahs.length){
+
+return;
+
+}
+
+const ayah =
+explorerAyahs[currentAyah];
+
+const audio =
+document.getElementById("quranAudio");
+
+audio.src=
+"https://cdn.islamic.network/quran/audio/128/ar.alafasy/"
++ayah.globalNumber+
+".mp3";
+
+audio.play();
+
+}
+
+
+/* CHANGE SURAH */
+
+document
+.getElementById("surahSelect")
+.addEventListener(
+"change",
+loadSurah
+);
+
+
+/* INITIAL LOAD */
+
+loadSurah();
+
+</script><!-- QIBLA -->
+
+<section class="section" id="qibla">
+
+<div class="container">
+
+<div class="title">
+
+<small>Face the Kaaba</small>
+
+<h2>🧭 Qibla Direction</h2>
+
+<p>
+Find the direction of the Kaaba from your location.
+</p>
+
+</div>
+
+<div class="card qibla">
+
+<div class="compass">
+
+<div class="compass-inner" id="compass">
+🕋
+</div>
+
+</div>
+
+<div class="qibla-degree" id="qiblaDegree">
+Qibla: --°
+</div>
+
+<p style="margin-top:10px;color:var(--muted)">
+For accurate Qibla direction, allow location access.
+</p>
+
+<button
+class="primary-btn"
+style="margin-top:20px"
+onclick="getQibla()">
+
+📍 Find Qibla
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DHIKR -->
+
+<section class="section" id="dhikr">
+
+<div class="container">
+
+<div class="title">
+
+<small>Remember Allah</small>
+
+<h2>📿 Dhikr Counter</h2>
+
+<p>
+Keep your tongue moist with remembrance.
+</p>
+
+</div>
+
+<div class="card counter">
+
+<h3>سُبْحَانَ اللَّهِ</h3>
+
+<p>SubhanAllah</p>
+
+<div class="counter-number" id="count">
+0
+</div>
+
+<button onclick="addDhikr()">
++ Dhikr
+</button>
+
+<button class="reset" onclick="resetDhikr()">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FAVORITES -->
+
+<section class="section" id="favorites">
+
+<div class="container">
+
+<div class="title">
+
+<small>Your Collection</small>
+
+<h2>❤️ Favorites</h2>
+
+<p>
+Your saved reminders will appear here.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="favorite-count" id="favoriteCount">
+0
+</div>
+
+<p style="text-align:center;color:var(--muted)">
+Saved reminders
+</p>
+
+<div class="favorite-list" id="favoriteList"></div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<h3>☪ Noor Reminders</h3>
+
+<p>
+Light for the heart. Guidance for the soul.
+</p>
+
+<div class="footer-line"></div>
+
+<p>
+© <span id="year"></span> Noor Reminders
+</p>
+
+</footer>
+
+
+<!-- BACK TO TOP -->
+
+<button class="top" id="topBtn" onclick="goTop()">
+↑
+</button>
+
+
+<!-- MOBILE NAV -->
+
+<div class="bottom-nav">
+
+<a href="#home">
+<span>⌂</span>
+Home
+</a>
+
+<a href="#prayer">
+<span>🕌</span>
+Prayer
+</a>
+
+<a href="#qibla">
+<span>🧭</span>
+Qibla
+</a>
+
+<a href="#dhikr">
+<span>📿</span>
+Dhikr
+</a>
+
+<a href="#favorites">
+<span>❤️</span>
+Saved
+</a>
+
+</div>
+
+
+<script>
+
+/* ==========================
+MENU
+========================== */
+
+function toggleMenu(){
+
+document
+.getElementById("navLinks")
+.classList.toggle("active");
+
+}
+
+
+/* ==========================
+DARK MODE
+========================== */
+
+function toggleTheme(){
+
+document.body.classList.toggle("dark");
+
+const button=document.getElementById("themeBtn");
+
+if(document.body.classList.contains("dark")){
+
+button.textContent="☀️";
+
+localStorage.setItem("noorTheme","dark");
+
+}else{
+
+button.textContent="🌙";
+
+localStorage.setItem("noorTheme","light");
+
+}
+
+}
+
+if(localStorage.getItem("noorTheme")==="dark"){
+
+document.body.classList.add("dark");
+
+document.getElementById("themeBtn").textContent="☀️";
+
+}
+
+
+/* ==========================
+DAILY REMINDER
+========================== */
+
+const reminders=[
+
+[
+"Indeed, in the remembrance of Allah do hearts find rest.",
+"Qur'an 13:28"
+],
+
+[
+"So, surely with hardship comes ease.",
+"Qur'an 94:5"
+],
+
+[
+"And whoever puts their trust in Allah, He will be enough for them.",
+"Qur'an 65:3"
+],
+
+[
+"Do not despair of the mercy of Allah.",
+"Qur'an 39:53"
+],
+
+[
+"Indeed, Allah is with the patient.",
+"Qur'an 2:153"
+]
+
+];
+
+const today=new Date().getDate();
+
+const daily=reminders[today % reminders.length];
+
+document.getElementById("dailyText").textContent=daily[0];
+
+document.querySelector(".source").textContent=daily[1];
+
+
+/* ==========================
+PRAYER TIMES
+========================== */
+
+async function loadPrayerTimes(){
+
+const city=document.getElementById("city").value.trim();
+
+const country=document.getElementById("country").value.trim();
+
+if(!city || !country){
+
+alert("Please enter your city and country.");
+
+return;
+
+}
+
+const status=document.getElementById("prayerStatus");
+
+status.textContent="Loading prayer times...";
+
+try{
+
+const url=
+"https://api.aladhan.com/v1/timingsByCity?city="
++encodeURIComponent(city)
++"&country="
++encodeURIComponent(country)
++"&method=2";
+
+const response=await fetch(url);
+
+const data=await response.json();
+
+if(data.code!==200){
+
+throw new Error("Location not found");
+
+}
+
+const t=data.data.timings;
+
+document.querySelector("#fajr .prayer-time").textContent=
+cleanTime(t.Fajr);
+
+document.querySelector("#dhuhr .prayer-time").textContent=
+cleanTime(t.Dhuhr);
+
+document.querySelector("#asr .prayer-time").textContent=
+cleanTime(t.Asr);
+
+document.querySelector("#maghrib .prayer-time").textContent=
+cleanTime(t.Maghrib);
+
+document.querySelector("#isha .prayer-time").textContent=
+cleanTime(t.Isha);
+
+document.getElementById("locationText").textContent=
+city+", "+country;
+
+status.textContent=
+"Prayer times for today • "+city+", "+country;
+
+highlightNextPrayer(t);
+
+}catch(error){
+
+status.textContent=
+"Could not load prayer times. Check your city and country.";
+
+}
+
+}
+
+
+function cleanTime(time){
+
+return time.split(" ")[0];
+
+}
+
+
+/* ==========================
+NEXT PRAYER
+========================== */
+
+function highlightNextPrayer(times){
+
+const now=new Date();
+
+const currentMinutes=
+now.getHours()*60+now.getMinutes();
+
+const prayers=[
+
+["fajr",times.Fajr],
+["dhuhr",times.Dhuhr],
+["asr",times.Asr],
+["maghrib",times.Maghrib],
+["isha",times.Isha]
+
+];
+
+document
+.querySelectorAll(".prayer")
+.forEach(p=>p.classList.remove("next"));
+
+let next=null;
+
+for(const prayer of prayers){
+
+const time=prayer[1].split(":");
+
+const minutes=
+parseInt(time[0])*60+
+parseInt(time[1]);
+
+if(minutes>currentMinutes){
+
+next=prayer[0];
+
+break;
+
+}
+
+}
+
+if(!next){
+
+next="fajr";
+
+}
+
+document
+.getElementById(next)
+.classList.add("next");
+
+const name=
+document
+.getElementById(next)
+.querySelector(".prayer-name")
+.textContent;
+
+document.getElementById("prayerStatus").textContent=
+"Next prayer: "+name;
+
+}
+
+
+/* ==========================
+QIBLA
+========================== */
+
+function getQibla(){
+
+if(!navigator.geolocation){
+
+alert("Your browser does not support location.");
+
+return;
+
+}
+
+navigator.geolocation.getCurrentPosition(
+
+function(position){
+
+const lat=position.coords.latitude;
+
+const lon=position.coords.longitude;
+
+const kaabaLat=21.422487;
+
+const kaabaLon=39.826206;
+
+const rad=Math.PI/180;
+
+const y=
+Math.sin((kaabaLon-lon)*rad);
+
+const x=
+Math.cos(lat*rad)*Math.tan(kaabaLat*rad)
+-
+Math.sin(lat*rad)*
+Math.cos((kaabaLon-lon)*rad);
+
+let bearing=
+Math.atan2(y,x)/rad;
+
+bearing=(bearing+360)%360;
+
+document.getElementById("qiblaDegree").textContent=
+"Qibla: "+bearing.toFixed(1)+"°";
+
+document.getElementById("compass").style.transform=
+"rotate("+bearing+"deg)";
+
+},
+
+function(){
+
+alert(
+"Location permission was not available. Please allow location access."
+);
+
+}
+
+);
+
+}
+
+
+/* ==========================
+DHIKR
+========================== */
+
+let dhikr=
+Number(localStorage.getItem("noorDhikr")||0);
+
+document.getElementById("count").textContent=dhikr;
+
+function addDhikr(){
+
+dhikr++;
+
+document.getElementById("count").textContent=dhikr;
+
+localStorage.setItem("noorDhikr",dhikr);
+
+}
+
+function resetDhikr(){
+
+dhikr=0;
+
+document.getElementById("count").textContent=0;
+
+localStorage.setItem("noorDhikr",0);
+
+}
+
+
+/* ==========================
+FAVORITES
+========================== */
+
+function loadFavorites(){
+
+const favorites=
+JSON.parse(
+localStorage.getItem("noorFavorites")||"[]"
+);
+
+document.getElementById("favoriteCount")
+.textContent=favorites.length;
+
+const list=
+document.getElementById("favoriteList");
+
+list.innerHTML="";
+
+if(favorites.length===0){
+
+list.innerHTML=
+"<p style='text-align:center;color:var(--muted)'>No saved reminders yet.</p>";
+
+return;
+
+}
+
+favorites.forEach(function(item,index){
+
+const div=document.createElement("div");
+
+div.className="favorite-item";
+
+div.innerHTML=`
+
+<p>${item}</p>
+
+<button
+class="action"
+onclick="removeFavorite(${index})">
+
+Remove
+
+</button>
+
+`;
+
+list.appendChild(div);
+
+});
+
+}
+
+
+function saveFavorite(text){
+
+let favorites=
+JSON.parse(
+localStorage.getItem("noorFavorites")||"[]"
+);
+
+if(!favorites.includes(text)){
+
+favorites.push(text);
+
+localStorage.setItem(
+"noorFavorites",
+JSON.stringify(favorites)
+);
+
+}
+
+loadFavorites();
+
+}
+
+
+function removeFavorite(index){
+
+let favorites=
+JSON.parse(
+localStorage.getItem("noorFavorites")||"[]"
+);
+
+favorites.splice(index,1);
+
+localStorage.setItem(
+"noorFavorites",
+JSON.stringify(favorites)
+);
+
+loadFavorites();
+
+}
+
+loadFavorites();
+
+
+/* ==========================
+YEAR
+========================== */
+
+document.getElementById("year").textContent=
+new Date().getFullYear();
+
+
+/* ==========================
+TOP BUTTON
+========================== */
+
+window.addEventListener("scroll",function(){
+
+const button=document.getElementById("topBtn");
+
+button.style.display=
+window.scrollY>400 ? "block" : "none";
+
+});
+
+
+function goTop(){
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+</script>
+
+<!-- DUA FOR BILAL -->
+<div class="dua-for-me">
+  <h3>🤲 A Special Dua</h3>
+
+  <p>
+    Whoever reads this, please make Dua for me,
+    <strong>Bilal Athman</strong>.
+  </p>
+
+  <p>
+    May Allah forgive me, guide me, bless me,
+    protect me, and grant me Jannah. Ameen 🤲
+  </p>
+
+  <a href="https://www.instagram.com/sayyaf_v1/" target="_blank">
+    📷 Follow me on Instagram @sayyaf_v1
+  </a>
+</div><!-- DUAS LIBRARY -->
+
+<section class="section" id="duas">
+
+<div class="container">
+
+<div class="title">
+<small>Supplications</small>
+<h2>🤲 Duas Library</h2>
+<p>Beautiful supplications for everyday life.</p>
+</div>
+
+<div class="dua-search">
+
+<input
+type="text"
+id="duaSearch"
+placeholder="🔎 Search duas..."
+oninput="searchDuas()"
+>
+
+</div>
+
+<div class="dua-categories">
+
+<button onclick="filterDuas('all')">All</button>
+<button onclick="filterDuas('morning')">🌅 Morning</button>
+<button onclick="filterDuas('evening')">🌙 Evening</button>
+<button onclick="filterDuas('protection')">🛡️ Protection</button>
+<button onclick="filterDuas('daily')">☀️ Daily</button>
+
+</div>
+
+<div id="duasList"></div>
+
+</div>
+
+</section>
+
+
+<style>
+
+.dua-search{
+margin:20px 0;
+}
+
+.dua-search input{
+width:100%;
+box-sizing:border-box;
+padding:15px;
+border-radius:12px;
+border:1px solid var(--border);
+background:var(--card);
+color:var(--text);
+font-size:16px;
+outline:none;
+}
+
+.dua-categories{
+display:flex;
+gap:8px;
+overflow-x:auto;
+padding:5px 0 20px;
+}
+
+.dua-categories button{
+white-space:nowrap;
+padding:10px 14px;
+border-radius:20px;
+border:1px solid var(--border);
+background:var(--card);
+color:var(--text);
+cursor:pointer;
+}
+
+.dua-card{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:18px;
+padding:22px;
+margin-bottom:15px;
+}
+
+.dua-card h3{
+margin-top:0;
+}
+
+.dua-arabic{
+font-size:27px;
+line-height:2;
+direction:rtl;
+text-align:right;
+margin:20px 0;
+}
+
+.dua-translation{
+line-height:1.7;
+opacity:.8;
+}
+
+.dua-reference{
+font-size:13px;
+opacity:.6;
+margin-top:15px;
+}
+
+.dua-favorite{
+float:right;
+border:0;
+background:none;
+font-size:22px;
+cursor:pointer;
+}
+
+</style>
+
+
+<script>
+
+const duas = [
+
+{
+title:"Morning Protection",
+category:"morning",
+arabic:"اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا",
+translation:"O Allah, by You we enter the morning and by You we enter the evening.",
+reference:"Abu Dawud"
+},
+
+{
+title:"Evening Remembrance",
+category:"evening",
+arabic:"اللَّهُمَّ بِكَ أَمْسَيْنَا وَبِكَ أَصْبَحْنَا",
+translation:"O Allah, by You we enter the evening and by You we enter the morning.",
+reference:"Abu Dawud"
+},
+
+{
+title:"Seeking Protection",
+category:"protection",
+arabic:"أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",
+translation:"I seek refuge in the perfect words of Allah from the evil of what He has created.",
+reference:"Sahih Muslim"
+},
+
+{
+title:"Before Eating",
+category:"daily",
+arabic:"بِسْمِ اللَّهِ",
+translation:"In the name of Allah.",
+reference:"Sunan Abi Dawud"
+},
+
+{
+title:"After Eating",
+category:"daily",
+arabic:"الْحَمْدُ لِلَّهِ",
+translation:"All praise belongs to Allah.",
+reference:"Sahih Muslim"
+},
+
+{
+title:"Seeking Knowledge",
+category:"daily",
+arabic:"رَبِّ زِدْنِي عِلْمًا",
+translation:"My Lord, increase me in knowledge.",
+reference:"Quran 20:114"
+},
+
+{
+title:"Seeking Forgiveness",
+category:"daily",
+arabic:"رَبِّ اغْفِرْ لِي",
+translation:"My Lord, forgive me.",
+reference:"Quran 23:118"
+},
+
+{
+title:"Protection from Harm",
+category:"protection",
+arabic:"حَسْبِيَ اللَّهُ",
+translation:"Allah is sufficient for me.",
+reference:"Quran 9:129"
+}
+
+];
+
+
+let currentDuaCategory = "all";
+
+
+function displayDuas(){
+
+const container =
+document.getElementById("duasList");
+
+const search =
+document.getElementById("duaSearch")
+.value
+.toLowerCase();
+
+container.innerHTML="";
+
+const filtered =
+duas.filter(function(dua){
+
+const matchesCategory =
+currentDuaCategory === "all" ||
+dua.category === currentDuaCategory;
+
+const matchesSearch =
+dua.title.toLowerCase().includes(search) ||
+dua.translation.toLowerCase().includes(search);
+
+return matchesCategory && matchesSearch;
+
+});
+
+
+filtered.forEach(function(dua,index){
+
+const card =
+document.createElement("div");
+
+card.className="dua-card";
+
+card.innerHTML=`
+
+<button
+class="dua-favorite"
+onclick="toggleFavorite(${index})">
+♡
+</button>
+
+<h3>${dua.title}</h3>
+
+<div class="dua-arabic">
+${dua.arabic}
+</div>
+
+<p class="dua-translation">
+${dua.translation}
+</p>
+
+<div class="dua-reference">
+📚 ${dua.reference}
+</div>
+
+`;
+
+container.appendChild(card);
+
+});
+
+}
+
+
+function filterDuas(category){
+
+currentDuaCategory = category;
+
+displayDuas();
+
+}
+
+
+function searchDuas(){
+
+displayDuas();
+
+}
+
+
+function toggleFavorite(index){
+
+alert("Dua added to favorites ❤️");
+
+}
+
+
+displayDuas();
+
+</script><!-- DAILY NOOR REMINDER -->
+
+<section class="section" id="dailyNoor">
+
+<div class="container">
+
+<div class="title">
+<small>A Moment of Reflection</small>
+<h2>✨ Noor of the Day</h2>
+<p>A small reminder for your heart.</p>
+</div>
+
+<div class="noor-reminder-card">
+
+<div class="noor-star">✦</div>
+
+<div class="noor-label">TODAY'S REMINDER</div>
+
+<h3 id="noorReminderTitle">
+Trust Allah
+</h3>
+
+<p id="noorReminderText">
+Allah knows what is best for you, even when you cannot see the wisdom behind what is happening.
+</p>
+
+<div class="noor-source" id="noorReminderSource">
+Islamic Reminder
+</div>
+
+<div class="noor-actions">
+
+<button onclick="newNoorReminder()">
+🔄 New Reminder
+</button>
+
+<button onclick="copyNoorReminder()">
+📋 Copy
+</button>
+
+<button onclick="saveNoorReminder()">
+♡ Save
+</button>
+
+</div>
+
+<p id="noorCopyMessage"></p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<style>
+
+.noor-reminder-card{
+max-width:650px;
+margin:auto;
+text-align:center;
+padding:35px 25px;
+border-radius:24px;
+border:1px solid var(--border);
+background:var(--card);
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.noor-star{
+font-size:35px;
+margin-bottom:10px;
+}
+
+.noor-label{
+font-size:12px;
+letter-spacing:2px;
+opacity:.6;
+}
+
+.noor-reminder-card h3{
+font-size:28px;
+margin:15px 0;
+}
+
+.noor-reminder-card p{
+font-size:17px;
+line-height:1.8;
+opacity:.85;
+}
+
+.noor-source{
+font-size:13px;
+opacity:.6;
+margin:20px 0;
+}
+
+.noor-actions{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.noor-actions button{
+padding:12px 16px;
+border-radius:12px;
+border:1px solid var(--border);
+background:var(--card);
+color:var(--text);
+cursor:pointer;
+}
+
+#noorCopyMessage{
+font-size:13px;
+margin-top:15px;
+}
+
+</style>
+
+
+<script>
+
+const noorReminders = [
+
+{
+title:"Trust Allah",
+text:"Allah knows what is best for you, even when you cannot see the wisdom behind what is happening.",
+source:"Islamic Reminder"
+},
+
+{
+title:"Keep Making Dua",
+text:"Never underestimate the power of sincere dua. Turn to Allah in every situation.",
+source:"Islamic Reminder"
+},
+
+{
+title:"Be Grateful",
+text:"If you are grateful, Allah promises to increase you in His blessings.",
+source:"Quran 14:7"
+},
+
+{
+title:"Remember Allah",
+text:"Indeed, in the remembrance of Allah do hearts find rest.",
+source:"Quran 13:28"
+},
+
+{
+title:"Do Good",
+text:"Whoever does an atom's weight of good will see it.",
+source:"Quran 99:7"
+},
+
+{
+title:"Allah Is Near",
+text:"When My servants ask you about Me, surely I am near. I answer the prayer of every supplicant when they call upon Me.",
+source:"Quran 2:186"
+},
+
+{
+title:"Be Patient",
+text:"Indeed, Allah is with those who are patient.",
+source:"Quran 8:46"
+},
+
+{
+title:"Forgiveness",
+text:"Turn to Allah in repentance and seek His forgiveness. His mercy is greater than your mistakes.",
+source:"Islamic Reminder"
+},
+
+{
+title:"Never Give Up",
+text:"Do not despair of the mercy of Allah.",
+source:"Quran 39:53"
+},
+
+{
+title:"Speak Good",
+text:"Speak words that are good, kind and beneficial.",
+source:"Quran 17:53"
+}
+
+];
+
+
+let noorReminderIndex =
+new Date().getDate() %
+noorReminders.length;
+
+
+function showNoorReminder(){
+
+const reminder =
+noorReminders[noorReminderIndex];
+
+document.getElementById(
+"noorReminderTitle"
+).textContent =
+reminder.title;
+
+document.getElementById(
+"noorReminderText"
+).textContent =
+reminder.text;
+
+document.getElementById(
+"noorReminderSource"
+).textContent =
+reminder.source;
+
+}
+
+
+function newNoorReminder(){
+
+noorReminderIndex =
+Math.floor(
+Math.random() *
+noorReminders.length
+);
+
+showNoorReminder();
+
+}
+
+
+function copyNoorReminder(){
+
+const reminder =
+noorReminders[noorReminderIndex];
+
+const text =
+reminder.title +
+"\n\n" +
+reminder.text +
+"\n\n" +
+reminder.source;
+
+navigator.clipboard.writeText(text)
+.then(function(){
+
+document.getElementById(
+"noorCopyMessage"
+).textContent =
+"Copied successfully ✓";
+
+setTimeout(function(){
+
+document.getElementById(
+"noorCopyMessage"
+).textContent =
+"";
+
+},2000);
+
+})
+.catch(function(){
+
+document.getElementById(
+"noorCopyMessage"
+).textContent =
+"Copy is not available in this browser.";
+
+});
+
+}
+
+
+function saveNoorReminder(){
+
+const reminder =
+noorReminders[noorReminderIndex];
+
+localStorage.setItem(
+"savedNoorReminder",
+JSON.stringify(reminder)
+);
+
+document.getElementById(
+"noorCopyMessage"
+).textContent =
+"Saved to your reminders ❤️";
+
+}
+
+
+showNoorReminder();
+
+</script>
+<!-- NOOR NAVIGATION -->
+
+<nav class="noor-nav">
+
+<a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
+🏠
+<span>Home</span>
+</a>
+
+<a href="#quranExplorer">
+📖
+<span>Quran</span>
+</a>
+
+<a href="#duas">
+🤲
+<span>Duas</span>
+</a>
+
+<a href="#qibla">
+🧭
+<span>Qibla</span>
+</a>
+
+<a href="#dailyNoor">
+✨
+<span>Reminders</span>
+</a>
+
+</nav>
+
+
+<style>
+
+.noor-nav{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+z-index:9999;
+
+display:flex;
+justify-content:space-around;
+align-items:center;
+
+padding:9px 5px;
+
+background:var(--card);
+border-top:1px solid var(--border);
+
+backdrop-filter:blur(12px);
+
+padding-bottom:calc(9px + env(safe-area-inset-bottom));
+}
+
+.noor-nav a{
+text-decoration:none;
+color:var(--text);
+
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:3px;
+
+font-size:20px;
+min-width:55px;
+
+opacity:.75;
+}
+
+.noor-nav a span{
+font-size:10px;
+}
+
+.noor-nav a:active{
+transform:scale(.9);
+opacity:1;
+}
+
+body{
+padding-bottom:75px;
+}
+
+</style><!-- REMINDER NOTIFICATIONS -->
+
+<section class="section" id="notifications">
+
+<div class="container">
+
+<div class="title">
+<small>Stay Connected</small>
+<h2>🔔 Noor Notifications</h2>
+<p>Never miss your daily reminder.</p>
+</div>
+
+<div class="card notification-card">
+
+<h3>🌙 Daily Islamic Reminder</h3>
+
+<p>
+Allow Noor Reminders to notify you when it is time for your daily reminder.
+</p>
+
+<button class="primary-btn" onclick="enableNoorNotifications()">
+🔔 Enable Notifications
+</button>
+
+<p id="notificationStatus"></p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<style>
+
+.notification-card{
+max-width:600px;
+margin:auto;
+text-align:center;
+padding:25px;
+}
+
+.notification-card h3{
+margin-top:0;
+}
+
+#notificationStatus{
+font-size:14px;
+margin-top:15px;
+opacity:.75;
+}
+
+</style>
+
+
+<script>
+
+function enableNoorNotifications(){
+
+if(!("Notification" in window)){
+
+document.getElementById("notificationStatus").textContent =
+"Notifications are not supported by this browser.";
+
+return;
+
+}
+
+Notification.requestPermission().then(function(permission){
+
+if(permission === "granted"){
+
+document.getElementById("notificationStatus").textContent =
+"✅ Notifications enabled.";
+
+new Notification("🌙 Noor Reminders",{
+
+body:"May Allah bless your day. Don't forget your daily remembrance."
+
+});
+
+}else{
+
+document.getElementById("notificationStatus").textContent =
+"Notifications were not enabled.";
+
+}
+
+});
+
+}
+
+function readDua(text) {
+  if ('speechSynthesis' in window) {
+    speechSynthesis.cancel();
+
+    const speech = new SpeechSynthesisUtterance(text);
+    speech.rate = 0.85;
+    speech.pitch = 1;
+
+    speechSynthesis.speak(speech);
+  } else {
+    alert("🔊 Text-to-speech is not supported by this browser.");
+  }
+}</script>
+</body>
+</html>
