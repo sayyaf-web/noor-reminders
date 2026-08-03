@@ -2,7 +2,7 @@
   "name": "Noorly",
   "short_name": "Noorly",
   "description": "Noorly is your daily Islamic companion featuring reminders, Qur'an, duas, prayer times, Qibla, and beneficial knowledge to strengthen your connection with Allah.",
-  "start_url": "./",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
@@ -19,13 +19,41 @@
       "src": "Icons/icon-192-1.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "Icons/icon-192-1.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "Icons/icon-512-1.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "Icons/icon-512-1.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "📿 Digital Tasbih",
+      "short_name": "Tasbih",
+      "description": "Open the electronic counter for your daily Dhikr.",
+      "url": "./index.html?shortcut=tasbih",
+      "icons": [{ "src": "Icons/icon-192-1.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "🧭 Qibla Compass",
+      "short_name": "Qibla",
+      "description": "Check the exact direction of the Kaaba immediately.",
+      "url": "./index.html?shortcut=qibla",
+      "icons": [{ "src": "Icons/icon-192-1.png", "sizes": "192x192" }]
     }
   ],
   "screenshots": [
@@ -66,3 +94,4 @@
     }
   ]
 }
+
