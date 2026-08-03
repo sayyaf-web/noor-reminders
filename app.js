@@ -112,6 +112,100 @@ const hijri = data.data.hijri;
 
     }
 
+}// ===============================
+// DIGITAL QIBLA COMPASS
+// ===============================
+
+function startQiblaCompass() {
+
+    const status = document.getElementById("qiblaStatus");
+
+    if (!navigator.geolocation) {
+        status.textContent = "Your browser does not support location.";
+        return;
+    }
+
+    status.textContent = "Getting your location...";
+
+    navigator.geolocation.getCurrentPosition(function(position){
+
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        // Kaaba coordinates
+        const kaabaLat = 21.4225;
+        const kaabaLon = 39.8262;
+
+        const φ1 = lat * Math.PI / 180;
+        const φ2 = kaabaLat * Math.PI / 180;
+        const Δλ = (kaabaLon - lon) * Math.PI / 180;
+
+        const y = Math.sin(Δλ);
+
+        const x =
+            Math.cos(φ1) * Math.tan(φ2) -
+            Math.sin(φ1) * Math.cos(Δλ);
+
+        const qibla =
+            (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+
+        document.getElementById("qiblaValue").textContent =
+            "Qibla: " + Math.round(qibla) + "°";
+
+        status.textContent =
+            "Rotate your phone to face the Kaaba.";
+
+        const ring =
+            document.querySelector(".compass-ring");
+
+        const arrow =
+            document.getElementById("qiblaArrow");
+
+        function rotateCompass(heading){
+
+            document.getElementById("headingValue").textContent =
+                "Heading: " + Math.round(heading) + "°";
+
+            ring.style.transform =
+                `rotate(${-heading}deg)`;
+
+            arrow.style.transform =
+                `translateX(-50%) rotate(${qibla-heading}deg)`;
+
+        }
+
+        if (typeof DeviceOrientationEvent !== "undefined") {
+
+            window.addEventListener("deviceorientation",function(event){
+
+                let heading;
+
+                if(event.webkitCompassHeading){
+                    heading = event.webkitCompassHeading;
+                }else{
+                    heading = 360 - event.alpha;
+                }
+
+                if(heading!=null){
+                    rotateCompass(heading);
+                }
+
+            });
+
+        } else {
+
+            status.textContent =
+                "Compass sensor not supported.";
+
+        }
+
+    },function(){
+
+        status.textContent =
+            "Location permission denied.";
+
+    });
+
 }
 <div class="compass-container">
 
