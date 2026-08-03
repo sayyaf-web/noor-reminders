@@ -1,7 +1,7 @@
 {
-  "name": "Rafiq",
-  "short_name": "Rafiq",
-  "description": "Rafiq is your daily Islamic companion featuring reminders, Qur'an, duas, prayer times, Qibla, and beneficial knowledge to strengthen your connection with Allah.",
+  "name": "muslim bro",
+  "short_name": "muslim bro",
+  "description": "muslim bro is your daily Islamic companion featuring reminders, Qur'an, duas, prayer times, Qibla, and beneficial knowledge to strengthen your connection with Allah.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
