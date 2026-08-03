@@ -1,62 +1,68 @@
 {
-  "name": "Noor Reminders",
-  "short_name": "Noor",
-  "description": "Noor Reminders is an Islamic app designed to help Muslims stay connected to their faith every day. It offers daily Islamic reminders, authentic Qur'an and Hadith quotes, inspiring duas, and beneficial knowledge to strengthen your relationship with Allah.\n\nWhether you're seeking motivation, spiritual growth, or gentle reminders throughout the day, Noor Reminders provides meaningful Islamic content in a simple and easy-to-use interface.\n\nFeatures:\n\n🌙 Daily Islamic reminders\n\n📖 Qur'an verses and authentic Hadith\n\n🤲 Daily duas and supplications\n\n💡 Islamic tips and beneficial knowledge\n\n🔔 Regular notifications to keep you inspired\n\n📱 Clean, fast, and user-friendly design\n\nMay Allah make this app a source of benefit, guidance, and continuous reward (Sadaqah Jariyah) for everyone who uses it. Ameen.",
+  "name": "Noorly",
+  "short_name": "Noorly",
+  "description": "Noorly is your daily Islamic companion featuring reminders, Qur'an, duas, prayer times, Qibla, and beneficial knowledge to strengthen your connection with Allah.",
   "start_url": "./",
-  "id": "./",
   "scope": "./",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#0B3D2E",
   "theme_color": "#0B3D2E",
-  "orientation": "portrait",
+  "lang": "en",
+  "categories": [
+    "education",
+    "lifestyle",
+    "religion"
+  ],
   "icons": [
     {
       "src": "Icons/icon-192-1.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "Icons/icon-512-1.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "screenshots": [
     {
-      "src": "screenshots/screenshot_1.png",
+      "src": "screenshots/home.png",
       "sizes": "1080x1920",
       "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "narrow",
+      "label": "Home Screen"
     },
     {
-      "src": "screenshots/screenshot_2.png",
+      "src": "screenshots/quran.png",
       "sizes": "1080x1920",
       "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "narrow",
+      "label": "Quran"
     },
     {
-      "src": "screenshots/screenshot_3.png",
+      "src": "screenshots/prayer.png",
       "sizes": "1080x1920",
       "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "narrow",
+      "label": "Prayer Times"
     },
     {
-      "src": "screenshots/screenshot_4.png",
+      "src": "screenshots/qibla.png",
       "sizes": "1080x1920",
       "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "narrow",
+      "label": "Qibla"
     },
     {
-      "src": "screenshots/screenshot_5.png",
+      "src": "screenshots/dhikr.png",
       "sizes": "1080x1920",
       "type": "image/png",
-      "form_factor": "narrow"
-    },
-    {
-      "src": "screenshots/screenshot_6.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "narrow",
+      "label": "Dhikr"
     }
   ]
 }
