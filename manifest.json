@@ -57,41 +57,39 @@
     }
   ],
   "screenshots": [
-    {
-      "src": "screenshots/home.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Home Screen"
-    },
-    {
-      "src": "screenshots/quran.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Quran"
-    },
-    {
-      "src": "screenshots/prayer.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Prayer Times"
-    },
-    {
-      "src": "screenshots/qibla.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Qibla"
-    },
-    {
-      "src": "screenshots/dhikr.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Dhikr"
-    }
-  ]
-}
-
+  {
+    "src": "screenshots/home.png",
+    "sizes": "1080x1920",
+    "type": "image/png",
+    "form_factor": "narrow",
+    "label": "Home"
+  },
+  {
+    "src": "screenshots/quran.png",
+    "sizes": "1080x1920",
+    "type": "image/png",
+    "form_factor": "narrow",
+    "label": "Quran Explorer"
+  },
+  {
+    "src": "screenshots/qibla.png",
+    "sizes": "1080x1920",
+    "type": "image/png",
+    "form_factor": "narrow",
+    "label": "Qibla Direction"
+  },
+  {
+    "src": "screenshots/prayer-times.png",
+    "sizes": "1080x1920",
+    "type": "image/png",
+    "form_factor": "narrow",
+    "label": "Prayer Times"
+  },
+  {
+    "src": "screenshots/welcome.png",
+    "sizes": "1080x1920",
+    "type": "image/png",
+    "form_factor": "narrow",
+    "label": "Welcome"
+  }
+]
