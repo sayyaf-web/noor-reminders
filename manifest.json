@@ -1,7 +1,7 @@
 {
-  "name": "Noorly",
-  "short_name": "Noorly",
-  "description": "Noorly is your daily Islamic companion featuring reminders, Qur'an, duas, prayer times, Qibla, and beneficial knowledge to strengthen your connection with Allah.",
+  "name": "Rafiq",
+  "short_name": "Rafiq",
+  "description": "Rafiq is your daily Islamic companion featuring reminders, Qur'an, duas, prayer times, Qibla, and beneficial knowledge to strengthen your connection with Allah.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
