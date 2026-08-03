@@ -44,18 +44,20 @@ function updateDashboard() {
   const greetingEl = document.getElementById("greeting");
   if (greetingEl) greetingEl.textContent = greeting;
 
- #liveClock{
-display:block !important;
-visibility:visible !important;
-opacity:1 !important;
-color:#ffffff !important;
-background:red !important;
-font-size:34px !important;
-font-weight:bold !important;
-padding:10px !important;
-min-height:40px !important;
-text-align:center !important;
-border:2px solid yellow !important;
+ const clockEl = document.getElementById("liveClock");
+
+if (clockEl) {
+  function updateClock() {
+    const now = new Date();
+
+    clockEl.textContent =
+      now.getHours().toString().padStart(2, "0") + ":" +
+      now.getMinutes().toString().padStart(2, "0") + ":" +
+      now.getSeconds().toString().padStart(2, "0");
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000);
 }
 
   // Gregorian Date
