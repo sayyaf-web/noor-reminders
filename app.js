@@ -113,65 +113,41 @@ const hijri = data.data.hijri;
     }
 
 }
-// ===============================
-// QIBLA COMPASS
-// ===============================
+<div class="compass-container">
 
-function startQiblaCompass() {
+    <div id="digitalCompass">
 
-    if (!navigator.geolocation) {
-        document.getElementById("qiblaStatus").textContent =
-            "Geolocation is not supported on this device.";
-        return;
-    }
+        <div class="compass-ring">
+            <span class="north">N</span>
+            <span class="east">E</span>
+            <span class="south">S</span>
+            <span class="west">W</span>
 
-    navigator.geolocation.getCurrentPosition(function(position) {
+            <div id="qiblaArrow">🟢⬆</div>
 
-        const userLat = position.coords.latitude;
-        const userLon = position.coords.longitude;
+            <div class="kaaba-center">
+                🕋
+            </div>
+        </div>
 
-        // Kaaba coordinates
-        const kaabaLat = 21.4225;
-        const kaabaLon = 39.8262;
+    </div>
 
-        const lat1 = userLat * Math.PI / 180;
-        const lat2 = kaabaLat * Math.PI / 180;
-        const dLon = (kaabaLon - userLon) * Math.PI / 180;
+    <h3 id="headingValue">
+        Heading: 0°
+    </h3>
 
-        const y = Math.sin(dLon);
-        const x =
-            Math.cos(lat1) * Math.tan(lat2) -
-            Math.sin(lat1) * Math.cos(dLon);
+    <h3 id="qiblaValue">
+        Qibla: --
+    </h3>
 
-        const qibla = (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+    <p id="qiblaStatus">
+        Tap the button below to begin.
+    </p>
 
-        document.getElementById("qiblaStatus").textContent =
-            "Qibla Direction: " + Math.round(qibla) + "° from North";
+    <button onclick="startQiblaCompass()" class="qibla-btn">
+        🧭 Start Compass
+    </button>
 
-        if (window.DeviceOrientationEvent) {
+</div>
 
-            window.addEventListener("deviceorientation", function(event) {
-
-                const heading = event.alpha;
-
-                if (heading != null) {
-
-                    const rotation = qibla - heading;
-
-                    document.querySelector(".needle").style.transform =
-                        `translateX(-50%) rotate(${rotation}deg)`;
-
-                }
-
-            });
-
-        }
-
-    }, function() {
-
-        document.getElementById("qiblaStatus").textContent =
-            "Location permission denied.";
-
-    });
-
-}
+    
