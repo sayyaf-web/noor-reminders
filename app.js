@@ -1,9 +1,16 @@
-// Noorly App
+// ===============================
+// NOORLY APP
+// ===============================
 
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Welcome to Noorly!");
 
-    // Check if notifications are supported
+    updateDashboard();
+
+    // Update dashboard every second
+    setInterval(updateDashboard, 1000);
+
+    // Check notification support
     if ("Notification" in window) {
         console.log("Notifications are supported.");
     } else {
@@ -11,7 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// Ask for notification permission
+// ===============================
+// ENABLE NOTIFICATIONS
+// ===============================
+
 async function enableNotifications() {
     if (!("Notification" in window)) {
         alert("Your browser does not support notifications.");
@@ -26,63 +36,83 @@ async function enableNotifications() {
         alert("Notifications were not enabled.");
     }
 }
-// Live greeting, clock and date
+
+// ===============================
+// LIVE DASHBOARD
+// ===============================
 
 function updateDashboard() {
-  const now = new Date();
 
-  // Greeting
-  const hour = now.getHours();
-  let greeting = "🌙 Assalamu Alaikum";
-
-  if (hour < 12) {
-    greeting = "🌅 Assalamu Alaikum";
-  } else if (hour < 18) {
-    greeting = "☀️ Assalamu Alaikum";
-  }
-
-  const greetingEl = document.getElementById("greeting");
-  if (greetingEl) greetingEl.textContent = greeting;
-
- const clockEl = document.getElementById("liveClock");
-
-if (clockEl) {
-  function updateClock() {
     const now = new Date();
 
-    clockEl.textContent =
-      now.getHours().toString().padStart(2, "0") + ":" +
-      now.getMinutes().toString().padStart(2, "0") + ":" +
-      now.getSeconds().toString().padStart(2, "0");
-  }
+    // Greeting
+    let greeting = "🌙 Assalamu Alaikum";
 
-  updateClock();
-  setInterval(updateClock, 1000);
-}
+    const hour = now.getHours();
 
-  // Gregorian Date
-  const dateEl = document.getElementById("liveDate");
-  if (dateEl) {
-    dateEl.textContent = now.toDateString();
-  }
-
-  // Hijri Date
-  const hijriEl = document.getElementById("liveHijri");
-  if (hijriEl) {
-    try {
-      hijriEl.textContent = new Intl.DateTimeFormat(
-        "en-TN-u-ca-islamic",
-        {
-          day: "numeric",
-          month: "long",
-          year: "numeric",
-        }
-      ).format(now);
-    } catch {
-      hijriEl.textContent = "";
+    if (hour >= 5 && hour < 12) {
+        greeting = "🌅 Assalamu Alaikum";
+    } else if (hour >= 12 && hour < 18) {
+        greeting = "☀️ Assalamu Alaikum";
+    } else {
+        greeting = "🌙 Assalamu Alaikum";
     }
-  }
-}
 
-updateDashboard();
-setInterval(updateDashboard, 1000);
+    const greetingEl = document.getElementById("greeting");
+    if (greetingEl) {
+        greetingEl.textContent = greeting;
+    }
+
+    // Live Clock
+    const clockEl = document.getElementById("liveClock");
+
+    if (clockEl) {
+        const time = now.toLocaleTimeString("en-GB", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
+
+        clockEl.textContent = time;
+    }
+
+    // Gregorian Date
+    const dateEl = document.getElementById("liveDate");
+
+    if (dateEl) {
+        const date = now.toLocaleDateString("en-GB", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        });
+
+        dateEl.textContent = date;
+    }
+
+    // Hijri Date
+    const hijriEl = document.getElementById("liveHijri");
+
+    if (hijriEl) {
+
+        try {
+
+            const hijri = new Intl.DateTimeFormat(
+                "en-u-ca-islamic",
+                {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric"
+                }
+            ).format(now);
+
+            hijriEl.textContent = hijri + " AH";
+
+        } catch (error) {
+
+            hijriEl.textContent = "Hijri date unavailable";
+
+        }
+    }
+
+}
