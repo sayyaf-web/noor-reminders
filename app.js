@@ -47,7 +47,10 @@ function updateDashboard() {
   // Live Clock
   const clockEl = document.getElementById("liveClock");
   if (clockEl) {
-    clockEl.textContent = now.toLocaleTimeString();
+clockEl.textContent =
+  now.getHours().toString().padStart(2, "0") + ":" +
+  now.getMinutes().toString().padStart(2, "0") + ":" +
+  now.getSeconds().toString().padStart(2, "0");
   }
 
   // Gregorian Date
