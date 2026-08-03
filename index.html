@@ -3195,7 +3195,23 @@ function readDua(text) {
   } else {
     alert("🔊 Text-to-speech is not supported by this browser.");
   }
-}</script>
+}</script><section class="qibla-section">
+    <h2>🧭 Qibla Compass</h2>
+
+    <div class="compass-container">
+        <div id="compass">
+            <div class="needle"></div>
+        </div>
+
+        <p id="qiblaStatus">
+            Tap "Allow" when your browser asks for location and compass access.
+        </p>
+    </div>
+
+    <button onclick="startQiblaCompass()" class="qibla-btn">
+        Find Qibla
+    </button>
+</section>
 <script>
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
