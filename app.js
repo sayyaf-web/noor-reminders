@@ -26,3 +26,53 @@ async function enableNotifications() {
         alert("Notifications were not enabled.");
     }
 }
+// Live greeting, clock and date
+
+function updateDashboard() {
+  const now = new Date();
+
+  // Greeting
+  const hour = now.getHours();
+  let greeting = "🌙 Assalamu Alaikum";
+
+  if (hour < 12) {
+    greeting = "🌅 Assalamu Alaikum";
+  } else if (hour < 18) {
+    greeting = "☀️ Assalamu Alaikum";
+  }
+
+  const greetingEl = document.getElementById("greeting");
+  if (greetingEl) greetingEl.textContent = greeting;
+
+  // Live Clock
+  const clockEl = document.getElementById("liveClock");
+  if (clockEl) {
+    clockEl.textContent = now.toLocaleTimeString();
+  }
+
+  // Gregorian Date
+  const dateEl = document.getElementById("liveDate");
+  if (dateEl) {
+    dateEl.textContent = now.toDateString();
+  }
+
+  // Hijri Date
+  const hijriEl = document.getElementById("liveHijri");
+  if (hijriEl) {
+    try {
+      hijriEl.textContent = new Intl.DateTimeFormat(
+        "en-TN-u-ca-islamic",
+        {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        }
+      ).format(now);
+    } catch {
+      hijriEl.textContent = "";
+    }
+  }
+}
+
+updateDashboard();
+setInterval(updateDashboard, 1000);
