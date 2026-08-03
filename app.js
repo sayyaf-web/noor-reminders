@@ -89,11 +89,19 @@ async function getHijriDate() {
 
     try {
 
-        const response = await fetch("https://api.aladhan.com/v1/gToH");
+        const today = new Date();
 
-        const data = await response.json();
+const day = String(today.getDate()).padStart(2, "0");
+const month = String(today.getMonth() + 1).padStart(2, "0");
+const year = today.getFullYear();
 
-        const hijri = data.data.hijri;
+const response = await fetch(
+    `https://api.aladhan.com/v1/gToH?date=${day}-${month}-${year}`
+);
+
+const data = await response.json();
+
+const hijri = data.data.hijri;
 
         hijriEl.textContent =
             `${hijri.day} ${hijri.month.en} ${hijri.year} AH`;
