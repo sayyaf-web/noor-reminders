@@ -255,3 +255,89 @@ function startQiblaCompass() {
             }
 
             // Standard permission handling for modern mobile sensors (iOS 13+)
+// ============================================================================
+// FEATURE 4: MULTI-RECITER AUDIO PLAYER & AUTOMATED ADHAN ALARM
+// ============================================================================
+
+// High-quality streaming audio URLs for different reciters
+const reciterStreams = {
+    mishary: "https://mp3quran.net", // Al-Fatiha by Mishary Rashid Alafasy
+    shuraim: "https://mp3quran.net", // Al-Fatiha by Sa'ud Al-Shuraim
+    sudais: "https://mp3quran.net"  // Al-Fatiha by Abdul Rahman Al-Sudais
+};
+
+// Standard authentic Adhan audio file path (Ensure you place an adhan.mp3 in your audio folder)
+const adhanAudioUrl = "audio/adhan.mp3"; 
+
+let currentAudio = null;
+let adhanAlarmAudio = null;
+let alarmCheckInterval = null;
+
+// Audio player logic for Sheikh recitations
+window.playRecitation = () => {
+    const selector = document.getElementById("reciterSelect");
+    if (!selector) return;
+
+    const selectedReciter = selector.value;
+    const streamUrl = reciterStreams[selectedReciter];
+
+    if (currentAudio) {
+        currentAudio.pause();
+    }
+
+    currentAudio = new Audio(streamUrl);
+    currentAudio.play()
+        .then(() => console.log(`Playing recitation from reciter: ${selectedReciter}`))
+        .catch(err => alert("Audio playback failed. Please check internet connection."));
+};
+
+window.stopRecitation = () => {
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+    }
+};
+
+// Automated Adhan Alarm Engine
+function startAdhanAlarmEngine() {
+    if (alarmCheckInterval) clearInterval(alarmCheckInterval);
+
+    console.log("Adhan alarm system monitoring active...");
+    
+    alarmCheckInterval = setInterval(() => {
+        if (Object.keys(localPrayerTimes).length === 0) return;
+
+        const now = new Date();
+        const currentHours = String(now.getHours()).padStart(2, "0");
+        const currentMinutes = String(now.getMinutes()).padStart(2, "0");
+        const currentTimeString = `${currentHours}:${currentMinutes}`;
+
+        // Cross check current system time against calculated prayer times array
+        Object.entries(localPrayerTimes).forEach(([prayerName, prayerTime]) => {
+            if (currentTimeString === prayerTime && now.getSeconds() === 0) {
+                triggerAdhanAlarm(prayerName);
+            }
+        });
+    }, 1000); // Check every single second for precision
+}
+
+function triggerAdhanAlarm(prayerName) {
+    console.log(`It is time for ${prayerName}. Playing Adhan.`);
+    
+    // Play audio alert
+    if (adhanAlarmAudio) adhanAlarmAudio.pause();
+    adhanAlarmAudio = new Audio(adhanAudioUrl);
+    adhanAlarmAudio.play().catch(e => console.log("Adhan auto-play blocked by browser policy. Interaction required."));
+
+    // Push notification alert
+    if ("Notification" in window && Notification.permission === "granted") {
+        new Notification(`🕌 Time for ${prayerName}`, {
+            body: `Allahu Akbar, Allahu Akbar. It is time for ${prayerName} prayer.`,
+            icon: "Icons/icon-192-1.png",
+            requireInteraction: true
+        });
+    }
+}
+
+// Initialize alarm engine on startup
+startAdhanAlarmEngine();
