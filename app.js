@@ -44,14 +44,11 @@ function updateDashboard() {
   const greetingEl = document.getElementById("greeting");
   if (greetingEl) greetingEl.textContent = greeting;
 
-  // Live Clock
-  const clockEl = document.getElementById("liveClock");
-  if (clockEl) {
-clockEl.textContent =
-  now.getHours().toString().padStart(2, "0") + ":" +
-  now.getMinutes().toString().padStart(2, "0") + ":" +
-  now.getSeconds().toString().padStart(2, "0");
-  }
+ // Live Clock
+const clockEl = document.getElementById("liveClock");
+if (clockEl) {
+  clockEl.textContent = "CLOCK TEST";
+} 
 
   // Gregorian Date
   const dateEl = document.getElementById("liveDate");
